@@ -5,6 +5,7 @@ import {monthNames,url} from '../constants'
 import { Title,Button,Flex } from '@mantine/core';
 import Link from "next/link";
 import SearchBar from '../_components/searchbar'
+import GetProjectInDateRange from '../_components/datarange'
 import getData from '@/components/getData';
 
 export default function Projects({prj}: {projects: Project[]}){
@@ -28,6 +29,7 @@ export default function Projects({prj}: {projects: Project[]}){
   return (
     <div className='space-y-4'>
       <SearchBar setData={(project:Project) =>{ project.length == 0 ? getProjects() : setProjects(project)}} url={`${url}api/getprojects`} />
+      <GetProjectInDateRange setData={(project:Project) =>{ project.length == 0 ? getProjects() : setProjects(project)}} url={`${url}api/getprojects`}/>
       {
         projects.map((project: Project) => (
           <ProjectCard

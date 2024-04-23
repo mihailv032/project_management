@@ -21,7 +21,6 @@ export default function SearchBar({setData,url}: {setData: Function,url: string}
 	<FindProject selectedProject={selectedProject} setSelectedProject={(val:Project) =>{setSelectedProject(val.name);setData(val)}} project_name={name} url={url}  />
       </div>
     </div>
-
   )
 }
 
