@@ -28,7 +28,7 @@ export function FindProject({project_name}){
 
   useEffect( () => {
     async function getProjects(){
-      const  res = await getData(`${url}api/getprojects?name=${project_name}`,"GET")
+      const  res = await getData(`${url}api/getprojects`,"POST",{name: project_name})
       console.log(res)
       if(!res.message){return}
       const projects = res.message;

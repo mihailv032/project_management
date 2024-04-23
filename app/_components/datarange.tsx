@@ -8,7 +8,7 @@ export default function GetProjectInDateRange({url,setData,onClear}:{url:string,
   const [opened, setOpened] = useState(false);
   useEffect(() => {
     async function getProjects(){
-      const res = await getData(`${url}?start_date=${value[0].toISOString()}&end_date=${value[1].toISOString()}`,"GET")
+      const res = await getData(`${url}`,"POST",{start_date:value[0].toISOString(),end_date:value[1].toISOString()})
       console.log(res)
       if(!res.message){return}
       const projects = res.message;
