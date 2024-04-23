@@ -24,10 +24,13 @@ export default function Projects({prj}: {projects: Project[]}){
       project.created_at = new Date(project.created_at)
       project.updated_at = new Date(project.updated_at)
     })
+    useEffect(() => {
+      getProjects()
+    }, [])
     console.log(projects)
     setProjects(projects)
   }
-	if (projects.length === 0) return <div><GetProjectInDateRange onClear={getProjects} setData={setProjects} url={`${url}api/getprojects`}/><h1>No Projects Found</h1></div>
+  if (projects.length === 0) return <div><GetProjectInDateRange onClear={getProjects} setData={setProjects} url={`${url}api/getprojects`}/><h1>No Projects Found</h1></div>
   return (
     <div className='space-y-4'>
       <Flex>
