@@ -24,7 +24,7 @@ export default function Projects({prj}: {projects: Project[]}){
     console.log(projects)
     setProjects(projects)
   }
-
+  if (projects.length === 0) return <h1>No Projects Found</h1>
   return (
     <div className='space-y-4'>
       <SearchBar setData={(project:Project) =>{ project.length == 0 ? getProjects() : setProjects(project)}} url={`${url}api/getprojects`} />
