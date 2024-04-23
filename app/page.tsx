@@ -1,6 +1,7 @@
 import prisma from "../lib/prisma";
 import { Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
+import { User } from "prisma/client";
 import Projects from "./_components/projects";
 
 
@@ -28,8 +29,10 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-white space-y-4 px-4 flex items-center flex-col">
+      <Title order={1}>Projects</Title>
       <Projects prj={projects} />
     </main>
   );
 }
+
 

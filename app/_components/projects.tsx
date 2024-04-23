@@ -7,6 +7,8 @@ import Link from "next/link";
 import SearchBar from '../_components/searchbar'
 import GetProjectInDateRange from '../_components/datarange'
 import getData from '@/components/getData';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 export default function Projects({prj}: {projects: Project[]}){
   const [projects, setProjects] = useState<Project[]>(prj)
@@ -28,14 +30,17 @@ export default function Projects({prj}: {projects: Project[]}){
 	if (projects.length === 0) return <div><GetProjectInDateRange onClear={getProjects} setData={setProjects} url={`${url}api/getprojects`}/><h1>No Projects Found</h1></div>
   return (
     <div className='space-y-4'>
-      <GetProjectInDateRange setData={setProjects} url={`${url}api/getprojects`} onClear={getProjects} />
+      <Flex>
+        <GetProjectInDateRange setData={setProjects} url={`${url}api/getprojects`} onClear={getProjects} />
+        <FontAwesomeIcon icon={faArrowRotateRight} onClick={getProjects} />
+      </Flex>
       {
         projects.map((project: Project) => (
           <ProjectCard
             key={project.id}
             id={project.id}
             title={project.name}
-            start_date={`${project.start_date.getDay()} ${monthNames[project.start_date.getMonth()]} ${project.start_date.getFullYear()}`}
+            start_date={`${project.start_date.getDate()} ${monthNames[project.start_date.getMonth()]} ${project.start_date.getFullYear()}`}
             description={project.description}
           />
         ))
@@ -46,10 +51,10 @@ export default function Projects({prj}: {projects: Project[]}){
 
 function ProjectCard({ id,title, start_date,description}: { title: string, description: string, start_date: string, id: number }) {
   return (
-    <Flex className="border-2 p-2 space-x-14 rounded-md max-w-[70vw]">
-      <Title order={3}>Title: {title}</Title>
-      <Title order={3}>Start Date: {start_date}</Title>
-      <textarea  value={description} readOnly className="border-none" />
+    <Flex className="border-2 p-2 space-x-14 rounded-md max-w-[70vw] md:flex-row flex-col items-start px-4">
+      <Title className="m-0" order={3}>Title: {title}</Title>
+      <Title className="m-0" order={3}>Start Date: {start_date}</Title>
+      <textarea  value={description} readOnly className="border-none m-0" />
       <Button component={Link} href={`/projects/${id}`}>See More</Button>
     </Flex>
   )
