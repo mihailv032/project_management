@@ -8,12 +8,16 @@ datasource db {
 }
 
 
+enum Role {
+  ADMIN
+  USER
+}
 model User {
   id       Int      @id @default(autoincrement())
-  email    String   @unique @notNull
+  email    String   @unique 
   password String
   name     String @unique
-  role     String
+  role     Role     @default(USER)
   disabled Boolean @default(false)
   sessions UserSession[]
   projects Project[]
@@ -24,7 +28,6 @@ model UserSession {
   id        Int     @id @default(autoincrement())
   user_id   Int
   token     String
-  expires   DateTime
   user      User    @relation(fields: [user_id], references: [id])
   @@map(name: "user_sessions")
 }
