@@ -10,10 +10,12 @@ import { AppContext } from '@/app/_components/appContext';
 
 export default function ProjectInfo({project}: {project: {owner_id: number, name: string,start_date: Date,end_date: Date,description: string,phase: string}}){
   const {user,loggedIn} = useContext(AppContext);
-  const [isOwner] = useState(loggedIn && (project.owner_id === user.id));
+  const [isOwner,setIsOwner] = useState(loggedIn && (project.owner_id === user.id));
   const [data,setData] = useState(project);
   const [editing,setEditing] = useState(false);
-
+  useEffect(() => {
+    setIsOwner(loggedIn && (project.owner_id === user.id));
+  },[loggedIn]);
   async function handleDelete(){
     const res = await getData(`${url}api/deleteproject`,"DELETE",{id: project.id});
     if(res.message){
