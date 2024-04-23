@@ -77,13 +77,8 @@ function User(){
     <DD title={<FontAwesomeIcon icon={faUser} size={"1x"}/>}>
       <div>
 	<ul className='bg-main-gray text-white rounded-md flex flex-col py-2 px-4 overflow-x-hidden overflow-y-auto font-medium items-stretch'>
-	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300">
-	    <Link href="/dashboard">Dashboard</Link>
-	  </li>
-	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300">
-	    Settings
-	  </li>
-	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300" onClick={handleLogout}>
+
+	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-md hover:bg-main-accent transition-color duration-300" onClick={handleLogout}>
             Logout
           </li>
 	</ul>

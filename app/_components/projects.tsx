@@ -51,8 +51,8 @@ export default function Projects({prj}: {projects: Project[]}){
 
 function ProjectCard({ id,title, start_date,description}: { title: string, description: string, start_date: string, id: number }) {
   return (
-    <Flex className="border-2 p-2 space-x-14 rounded-md max-w-[70vw] md:flex-row flex-col items-start px-4">
-      <Title className="m-0" order={3}>Title: {title}</Title>
+    <Flex className="border-2 p-2 space-x-14 rounded-md max-w-[70vw] md:flex-row flex-col items-baseline px-4">
+      <Title className="m-0 w-[200px]" order={3}>Title: {title}</Title>
       <Title className="m-0" order={3}>Start Date: {start_date}</Title>
       <textarea  value={description} readOnly className="border-none m-0" />
       <Button component={Link} href={`/projects/${id}`}>See More</Button>
