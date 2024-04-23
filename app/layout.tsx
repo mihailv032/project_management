@@ -5,6 +5,8 @@ import { ColorSchemeScript,createTheme, MantineProvider } from '@mantine/core';
 
 import NavBar from './_components/navbar'
 
+import Credentials from './_components/appContext';
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -36,10 +38,12 @@ export default function RootLayout({
 
       <body className={inter.className}>
 	<div className='mt-[150px]'>
-          <MantineProvider theme={mantineTheme}>
-            <NavBar />
-            {children}
-          </MantineProvider>
+          <Credentials>
+            <MantineProvider theme={mantineTheme}>
+              <NavBar />
+              {children}
+            </MantineProvider>
+          </Credentials>
 	</div>
       </body>
     </html>

@@ -25,8 +25,7 @@ export async function POST(request: NextRequest) {
         user_id: user_data.id
       }
     })
-    return Response.json({ message: session })
-    console.log("here")
+    return Response.json({ message: {user: user_data,token:session.token} })
   }catch(e){
     console.log(e)
     return Response.json({error: "could add the project"})

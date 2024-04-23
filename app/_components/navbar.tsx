@@ -6,11 +6,15 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { company_name } from "@/app/constants"
 import Link from "next/link"
 
+import { AppContext } from './appContext'
+import { useContext } from 'react'
 import { usePathname } from 'next/navigation'
 
+import Search from './searchbar'
 import DD from './dropdown'
 
 export default function NavBar(){
+  const {loggedIn} = useContext(AppContext)
   const pathname = usePathname()
   const hideNavbarPaths = ["/shop/checkout","/dashboard"]
   if(hideNavbarPaths.includes(pathname)) return;
@@ -30,6 +34,7 @@ export default function NavBar(){
             <span className="md:hidden block w-8 mb-1 bg-black h-1 origin-top-right transition-transform"></span>
 	  </label>
           <ul className="items-baseline flex max-[767px]:peer-checked:translate-x-0 max-[767px]:translate-x-[-100%] transition-transform duration-300 max-[767px]:absolute max-[767px]:flex-col max-[767px]:h-screen max-[767px]:bg-main-gray max-[767px]:w-1/2 max-[767px]:left-0 max-[767px]:top-[100%] z-20">
+	    <Search />
             <li className="relative mx-8 p-4 text-xl hover:text-main-accent transition-color duration-300 font-normal text-black before:content-[''] before:absolute before:h-[2px] before:w-full before:bottom-0 before:left-0 before:right-0 before:bg-main-primary before:scale-x-0 before:transition-all before:ease-linear before:duration-300 hover:before:scale-x-100">
 	      <Link href={"/"}>Home</Link>
 	    </li>
@@ -38,7 +43,7 @@ export default function NavBar(){
 	    </li>
 	    <li className="mx-8 p-4 font-normal text-main-primary hover:text-main-accent transition-color duration-300">
 	      {
-		false ? 
+		loggedIn ? 
 		<User /> :
 		<Link href="/login" className="color-black py-3 text-center px-4 bg-main-primary text-white rounded-md font-semibold transition-color duration-300 w-20 hover:bg-main-accent">
 		  Login

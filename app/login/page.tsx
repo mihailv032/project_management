@@ -5,15 +5,22 @@ import {url} from '../constants'
 import getData from '../../components/getData'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import {AppContext} from '../_components/appContext'
 
 export default function Login(){
   const [showMessage, setShowMessage] = useState(false);
+  const {setUser,setLoggedIn} = useContext(AppContext);
+  
   const router = useRouter();
   async function handleLogin(values){
     const res = await getData(`${url}api/login`,"POST",values);
     console.log(res)
     if(!res.message) return setShowMessage(res.error ? res.error : "Something went wrong");
+    localStorage.setItem('token',res.message.token);
+    localStorage.setItem('user',JSON.stringify(res.message.user));
+    setUser(res.message.user);
+    setLoggedIn(true);
     router.push(`/`)
   }
 
