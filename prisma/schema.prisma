@@ -26,11 +26,11 @@ model User {
 }
 
 model UserSession {
-  id        Int     @id @default(autoincrement())
   user_id   Int
   token     String
   user      User    @relation(fields: [user_id], references: [id])
   @@map(name: "user_sessions")
+  @@id([user_id, token])
 }
 
 
