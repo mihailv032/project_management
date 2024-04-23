@@ -4,7 +4,7 @@ export default async function getData(url:string,method:string,body:any){
     const options = {
       mode: 'cors',
       method: method,
-      headers: { 'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json',token:localStorage.getItem('token')},
       
     };
     method !== "GET" ? options.body = JSON.stringify(body) : null;
