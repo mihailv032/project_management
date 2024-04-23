@@ -1,17 +1,19 @@
 "use client"
 
-import { TextInput, Select, Button, Group, Box } from '@mantine/core';
+import { TextInput, Select, Button, Group, Box,Modal,Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { DateInput } from '@mantine/dates';
 import {phases,url} from '../constants'
 import getData from '../../components/getData'
+import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 
 export default function CreateProject(){
+  const [showMessage, setShowMessage] = useState(false);
   const router = useRouter();
   async function handleAddProject(values){
     const res = await getData(`${url}api/addproject`,"POST",values);
-    if(!res.message) return; 
+    if(!res.message) return setShowMessage(res.error ? res.error : "An error occured"); 
     router.push(`/projects/${res.message.id}`)
   }
 
@@ -39,6 +41,10 @@ export default function CreateProject(){
 
   return (
     <Box maw={340} mx="auto">
+      <Modal centered={true} opened={showMessage} onClose={() => setShowMessage(false) } title="Login">
+        <Title order={2}>{showMessage}</Title>
+      </Modal>
+
       <form onSubmit={form.onSubmit((values) => handleAddProject(values))}>
 	<TextInput withAsterisk label="Title" placeholder="project title" {...form.getInputProps("title")}/>
 	<DateInput withAsterisk valueFormat="DD MMM YYYY" label="Select start date"

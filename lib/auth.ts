@@ -7,7 +7,9 @@ export default async function isAuthentificatd(token: string) {
         token: token,
       },
     })
-    console.log('UserSession:', userSession)
+    if(!userSession){
+      return false;
+    }
     return userSession;
   }catch(err){
     console.log(err)
