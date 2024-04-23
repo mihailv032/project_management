@@ -9,6 +9,7 @@ import GetProjectInDateRange from '../_components/datarange'
 import getData from '@/components/getData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
+import {getProjects as getServerProjects} from '../page'
 
 export default function Projects({prj}: {projects: Project[]}){
   const [projects, setProjects] = useState<Project[]>(prj)
@@ -27,12 +28,12 @@ export default function Projects({prj}: {projects: Project[]}){
     console.log(projects)
     setProjects(projects)
   }
-	if (projects.length === 0) return <div><GetProjectInDateRange onClear={getProjects} setData={setProjects} url={`${url}api/getprojects`}/><h1>No Projects Found</h1></div>
+	if (projects.length === 0) return <div><GetProjectInDateRange onClear={getServerProjects} setData={setProjects} url={`${url}api/getprojects`}/><h1>No Projects Found</h1></div>
   return (
     <div className='space-y-4'>
       <Flex>
-        <GetProjectInDateRange setData={setProjects} url={`${url}api/getprojects`} onClear={getProjects} />
-        <FontAwesomeIcon icon={faArrowRotateRight} onClick={getProjects} />
+        <GetProjectInDateRange setData={setProjects} url={`${url}api/getprojects`} onClear={getServerProjects} />
+        <FontAwesomeIcon icon={faArrowRotateRight} onClick={getServerProjects} />
       </Flex>
       {
         projects.map((project: Project) => (
