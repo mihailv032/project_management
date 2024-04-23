@@ -31,7 +31,10 @@ export async function POST(request: NextRequest) {
     if(project.owner_id !== authorised.user_id){
       return Response.json({error: "you are not authorised"})
     }
-    const res = await prisma.project.delete({
+    const res = await prisma.project.update({
+      data: {
+        deleted: true
+      },
       where: {
 	id: body.project_id
       }
