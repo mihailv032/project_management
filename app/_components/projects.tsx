@@ -10,8 +10,8 @@ import getData from '@/components/getData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
 
-export default function Projects({prj}: {projects: Project[]}){
-  const [projects, setProjects] = useState<Project[]>(prj)
+export default function Projects(){
+  const [projects, setProjects] = useState<Project[]>([])
   console.log(projects)
   async function getProjects(){
     console.log('here')
