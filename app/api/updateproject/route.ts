@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       return Response.json({error: "project not found"})
     }
     if(project.owner_id !== authorised.user_id){
-      return Response.json({error: "project not found"})
+      return Response.json({error: "you are not authorised to update this project"})
     }
     const res = await prisma.project.update({
       data: body.values,
