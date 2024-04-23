@@ -23,9 +23,9 @@ export async function POST(request: NextRequest) {
     if(!user){
       return Response.json({error: "invalid token"})
     }
-    return Response.json({ message: "successfully added a new user" })
+    return Response.json({ message: "user is logged in" })
   }catch(e){
     console.log(e)
-    return Response.json({error: "could not add user"})
+    return Response.json({error: "something went wrong"})
   }
 }

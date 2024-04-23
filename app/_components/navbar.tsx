@@ -3,12 +3,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
-import { company_name } from "@/app/constants"
+import { company_name,url } from "@/app/constants"
 import Link from "next/link"
 
 import { AppContext } from './appContext'
 import { useContext } from 'react'
 import { usePathname } from 'next/navigation'
+
+import getData from '../../components/getData'
 
 import Search from './searchbar'
 import DD from './dropdown'
@@ -59,6 +61,18 @@ export default function NavBar(){
 
 
 function User(){
+  const {user,token,setToken,setLoggedIn,setUser} = useContext(AppContext)
+  async function handleLogout(){
+    const res = await getData(`${url}api/logout`,"POST",{token,user_id:user.id})
+    console.log(res)
+    if(res.error){return;}
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    setToken(null)
+    setUser(null)
+    setLoggedIn(false)
+  }
+
   return (
     <DD title={<FontAwesomeIcon icon={faUser} size={"1x"}/>}>
       <div>
@@ -69,7 +83,7 @@ function User(){
 	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300">
 	    Settings
 	  </li>
-	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300">
+	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300" onClick={handleLogout}>
             Logout
           </li>
 	</ul>

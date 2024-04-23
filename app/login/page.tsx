@@ -10,7 +10,7 @@ import {AppContext} from '../_components/appContext'
 
 export default function Login(){
   const [showMessage, setShowMessage] = useState(false);
-  const {setUser,setLoggedIn} = useContext(AppContext);
+  const {setUser,setLoggedIn,setToken} = useContext(AppContext);
   
   const router = useRouter();
   async function handleLogin(values){
@@ -20,6 +20,7 @@ export default function Login(){
     localStorage.setItem('token',res.message.token);
     localStorage.setItem('user',JSON.stringify(res.message.user));
     setUser(res.message.user);
+    setToken(res.message.token);
     setLoggedIn(true);
     router.push(`/`)
   }

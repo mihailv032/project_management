@@ -8,11 +8,13 @@ export const AppContext = createContext(null);
 
 export default function Credentials({children}){
   const [user,setUser] = useState(null)
+  const [token,setToken] = useState(null)
   const [loggedIn,setLoggedIn] = useState(false)
 
   useEffect(()=>{
     if(localStorage.getItem("user")){
       setUser(JSON.parse(localStorage.getItem("user")))
+      setToken(localStorage.getItem("token"))
       setLoggedIn(true)
       verify();
     }
@@ -24,11 +26,14 @@ export default function Credentials({children}){
       if(res.error){
         setUser(null)
         setLoggedIn(false)
+	setToken(null)
+	localStorage.removeItem("user")
+	localStorage.removeItem("token")
       }
     }
   },[])
   return (
-    <AppContext.Provider value={{user,setUser,loggedIn,setLoggedIn}}>
+    <AppContext.Provider value={{user,setUser,loggedIn,setLoggedIn,token,setToken}}>
       {children}
     </AppContext.Provider>
   )

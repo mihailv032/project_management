@@ -28,7 +28,6 @@ export default function Projects({prj}: {projects: Project[]}){
   if (projects.length === 0) return <h1>No Projects Found</h1>
   return (
     <div className='space-y-4'>
-      <SearchBar setData={(project:Project) =>{ project.length == 0 ? getProjects() : setProjects(project)}} url={`${url}api/getprojects`} />
       <GetProjectInDateRange setData={(project:Project) =>{ project.length == 0 ? getProjects() : setProjects(project)}} url={`${url}api/getprojects`}/>
       {
         projects.map((project: Project) => (
