@@ -26,7 +26,7 @@ function Projects(){
   console.log(projects)
   async function getProjects(){
     console.log('here')
-    const res = await getData(`${url}/api/getprojects`, "POST",{})
+    const res = await getData(`${url}api/getprojects`, "POST",{})
     if(!res.message) return;
     const projects = res.message;
     projects.forEach((project:Project) =>{
