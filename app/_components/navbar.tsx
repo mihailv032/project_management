@@ -40,9 +40,9 @@ export default function NavBar(){
             <li className="relative mx-8 p-4 text-xl hover:text-main-accent transition-color duration-300 font-normal text-black before:content-[''] before:absolute before:h-[2px] before:w-full before:bottom-0 before:left-0 before:right-0 before:bg-main-primary before:scale-x-0 before:transition-all before:ease-linear before:duration-300 hover:before:scale-x-100">
 	      <Link href={"/"}>Home</Link>
 	    </li>
-            <li className="relative mx-8 p-4 text-xl hover:text-main-accent transition-color duration-300 font-normal text-black before:content-[''] before:absolute before:h-[2px] before:w-full before:bottom-0 before:left-0 before:right-0 before:bg-main-primary before:scale-x-0 before:transition-all before:ease-linear before:duration-300 hover:before:scale-x-100">
+            {true && <li className="relative mx-8 p-4 text-xl hover:text-main-accent transition-color duration-300 font-normal text-black before:content-[''] before:absolute before:h-[2px] before:w-full before:bottom-0 before:left-0 before:right-0 before:bg-main-primary before:scale-x-0 before:transition-all before:ease-linear before:duration-300 hover:before:scale-x-100">
 	      <Link href={"/createproject"}>create project</Link>
-	    </li>
+	    </li>}
 	    <li className="mx-8 p-4 font-normal text-main-primary hover:text-main-accent transition-color duration-300">
 	      {
 		loggedIn ? 

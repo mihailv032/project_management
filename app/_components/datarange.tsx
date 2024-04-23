@@ -28,7 +28,7 @@ export default function GetProjectInDateRange({url,setData,onClear}:{url:string,
   }, [value]);
   return (
     <>
-      <div onFocus={() => setOpened(true)} >
+      <div onFocus={() => setOpened(true)} className='border-2 rounded-md'>
 	<input name="" type="text" value={ value[0] ? value[1] ? `${value[0]?.getDay()}/${value[0]?.getMonth()+1}/${value[0]?.getFullYear()}` +
 								 `- ${value[1]?.getDay()}/${value[1]?.getMonth()+1}/${value[1]?.getFullYear()} ` : `${value[0]?.getDay()}/${value[0]?.getMonth()+1}/${value[0]?.getFullYear()}` : ''
 	}

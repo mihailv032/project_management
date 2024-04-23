@@ -14,7 +14,7 @@ export default function SearchBar(){
 
   return(
     <div >
-      <input value={name} onChange={(e) => handleSetName(e)} placeholder="Search For Project By Name" />
+      <input value={name} onChange={(e) => handleSetName(e)} placeholder="Search For Project By Name" className='border-2 rounded-md p-1' />
       <div style={{position: 'relative'}}>
 	<FindProject project_name={name}  />
       </div>
