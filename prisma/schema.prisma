@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("MYSQL_PRISMA_URL") 
+}
+
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  name     String
+  role     String
+  disabled Boolean @default(false)
+  sessions UserSession[]
+  projects Project[]
+  @@map(name: "users")
+}
+
+model UserSession {
+  id        Int     @id @default(autoincrement())
+  user_id   Int
+  token     String
+  expires   DateTime
+  user      User    @relation(fields: [user_id], references: [id])
+  @@map(name: "user_sessions")
+}
+
+
+enum ProjectPhase {
+  DESIGN
+  DEVELOPMENT
+  TESTING
+  DEPLOYMENT
+  COMPLETE
+}
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String
+  start_date  DateTime
+  end_date    DateTime
+  description String
+  phase       ProjectPhase @default(DESIGN)
+  deleted     Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  owner_id    Int
+  owner       User     @relation(fields: [owner_id], references: [id])
+  @@map(name: "projects")
+}
+
