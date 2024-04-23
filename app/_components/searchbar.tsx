@@ -22,7 +22,7 @@ export default function SearchBar(){
   )
 }
 
-export const FindProject = memo(({project_name}) => {
+export function FindProject({project_name}){
   const [projects,setProjects] = useState([])
   const [opened,setOpened] = useState(false)
 
@@ -45,4 +45,4 @@ export const FindProject = memo(({project_name}) => {
       {projects.map(project =><Link href={`/projects/${project.id}`} key={project.name} onClick={() =>{setOpened(false);}}>{project.name}</Link>)}
     </div>
   )
-})
+}

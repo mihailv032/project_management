@@ -6,7 +6,7 @@ import {url} from '../constants'
 
 export const AppContext = createContext(null);
 
-export default function Credentials({children}){
+export default function Credentials({children}:{children:JSX.Element}){
   const [user,setUser] = useState(null)
   const [token,setToken] = useState(null)
   const [loggedIn,setLoggedIn] = useState(false)

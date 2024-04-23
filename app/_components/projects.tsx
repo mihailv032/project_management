@@ -9,7 +9,6 @@ import GetProjectInDateRange from '../_components/datarange'
 import getData from '@/components/getData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
-import {getProjects as getServerProjects} from '../page'
 
 export default function Projects({prj}: {projects: Project[]}){
   const [projects, setProjects] = useState<Project[]>(prj)
@@ -28,12 +27,12 @@ export default function Projects({prj}: {projects: Project[]}){
     console.log(projects)
     setProjects(projects)
   }
-	if (projects.length === 0) return <div><GetProjectInDateRange onClear={getServerProjects} setData={setProjects} url={`${url}api/getprojects`}/><h1>No Projects Found</h1></div>
+	if (projects.length === 0) return <div><GetProjectInDateRange onClear={getProjects} setData={setProjects} url={`${url}api/getprojects`}/><h1>No Projects Found</h1></div>
   return (
     <div className='space-y-4'>
       <Flex>
-        <GetProjectInDateRange setData={setProjects} url={`${url}api/getprojects`} onClear={getServerProjects} />
-        <FontAwesomeIcon icon={faArrowRotateRight} onClick={getServerProjects} />
+        <GetProjectInDateRange setData={setProjects} url={`${url}api/getprojects`} onClear={getProjects} />
+        <FontAwesomeIcon icon={faArrowRotateRight} onClick={getProjects} />
       </Flex>
       {
         projects.map((project: Project) => (
@@ -53,7 +52,7 @@ export default function Projects({prj}: {projects: Project[]}){
 function ProjectCard({ id,title, start_date,description}: { title: string, description: string, start_date: string, id: number }) {
   return (
     <Flex className="border-2 p-2 space-x-14 rounded-md max-w-[70vw] md:flex-row flex-col items-baseline px-4">
-      <Title className="m-0 w-[200px]" order={3}>Title: {title}</Title>
+      <Title className="m-0 w-[200px] overflow-y-auto" order={3}>Title: {title}</Title>
       <Title className="m-0" order={3}>Start Date: {start_date}</Title>
       <textarea  value={description} readOnly className="border-none m-0" />
       <Button component={Link} href={`/projects/${id}`}>See More</Button>

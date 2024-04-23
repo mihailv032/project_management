@@ -1,11 +1,9 @@
 import prisma from "../lib/prisma";
 import { Title } from '@mantine/core';
-import { DatePicker } from '@mantine/dates';
-import { User } from "prisma/client";
 import Projects from "./_components/projects";
 
 
-export async function getProjects() {
+async function getProjects() {
   const projects = await prisma.project.findMany({
     where: {
      deleted: false,
