@@ -1,7 +1,7 @@
 'use client'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faTrash, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 import { company_name } from "@/app/constants"
 import Link from "next/link"
@@ -33,7 +33,9 @@ export default function NavBar(){
             <li className="relative mx-8 p-4 text-xl hover:text-main-accent transition-color duration-300 font-normal text-black before:content-[''] before:absolute before:h-[2px] before:w-full before:bottom-0 before:left-0 before:right-0 before:bg-main-primary before:scale-x-0 before:transition-all before:ease-linear before:duration-300 hover:before:scale-x-100">
 	      <Link href={"/"}>Home</Link>
 	    </li>
-
+            <li className="relative mx-8 p-4 text-xl hover:text-main-accent transition-color duration-300 font-normal text-black before:content-[''] before:absolute before:h-[2px] before:w-full before:bottom-0 before:left-0 before:right-0 before:bg-main-primary before:scale-x-0 before:transition-all before:ease-linear before:duration-300 hover:before:scale-x-100">
+	      <Link href={"/createproject"}>create project</Link>
+	    </li>
 	    <li className="mx-8 p-4 font-normal text-main-primary hover:text-main-accent transition-color duration-300">
 	      {
 		false ? 
@@ -62,7 +64,9 @@ function User(){
 	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300">
 	    Settings
 	  </li>
-	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300">Logout</li>
+	  <li className="text-center bg-main-primary my-2 px-2 py-1 rounded-full hover:bg-main-accent transition-color duration-300">
+            Logout
+          </li>
 	</ul>
       </div>
     </DD>

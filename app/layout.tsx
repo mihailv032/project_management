@@ -17,7 +17,8 @@ const inter = Inter({ subsets: ["latin"] });
 * }; */
 
 const mantineTheme = createTheme({
-  /** Put your mantine theme override here */
+  autoContrast: true
+
 });
 
 
