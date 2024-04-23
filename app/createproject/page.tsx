@@ -11,9 +11,8 @@ export default function CreateProject(){
   const router = useRouter();
   async function handleAddProject(values){
     const res = await getData(`${url}api/addproject`,"POST",values);
-    console.log(res)
     if(!res.message) return; 
-    router.push(`/projects/${res.message.id}}`)
+    router.push(`/projects/${res.message.id}`)
   }
 
   const form = useForm({
