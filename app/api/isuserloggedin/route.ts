@@ -15,8 +15,10 @@ export async function POST(request: NextRequest) {
 
     const user = await prisma.userSession.findUnique({
       where: {
-        user_id: body.user_id,
-        token: body.token
+        user_id_token: {
+          user_id: body.user_id,
+          token: body.token
+        }
       }
     })
     console.log(user)
