@@ -42,7 +42,7 @@ export function FindProject({project_name}){
   return (
     <div >
       {projects.length === 0 && <div >No Project found</div>}
-      {projects.map(project =><Link href={`/projects/${project.id}`} key={project.name} onClick={() =>{setOpened(false);}}>{project.name}</Link>)}
+      {projects.map(project =><Link href={`/projects/${project.id}`} className="flex" key={project.name} onClick={() =>{setOpened(false);}}>{project.name}</Link>)}
     </div>
   )
 }
