@@ -2,7 +2,7 @@ import prisma from './prisma'
 
 export default async function isAuthentificatd(token: string) {
   try{
-    const userSession = await prisma.userSession.findUnique({
+    const userSession = await prisma.userSession.findFirst({
       where: {
         token: token,
       },
