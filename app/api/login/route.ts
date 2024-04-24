@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
         user_id: user_data.id
       }
     })
+    delete user_data.password;
     return Response.json({ message: {user: user_data,token:session.token} })
   }catch(e){
     console.log(e)
