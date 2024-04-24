@@ -45,8 +45,8 @@ function ShowProject({project,setEditing,isOwner,handleDelete}: {project: {name:
     <Flex className="p-2 space-y-4 rounded-md max-w-[70vw] flex-col items-baseline align-baseline">
       <Title order={3} >Title: {project.name}</Title>
       <Title order={3}>Start Date:
-        {`${project.start_date.getDate()} ${monthNames[project.start_date.getMonth()]} ${project.start_date.getFullYear()}`}</Title>
-      <Title order={3}>End Date: {`${project.end_date.getDate()} ${monthNames[project.end_date.getMonth()]} ${project.end_date.getFullYear()}`}</Title>
+        {`${project.start_date?.getDate()} ${monthNames[project.start_date?.getMonth()]} ${project.start_date?.getFullYear()}`}</Title>
+      <Title order={3}>End Date: {`${project.end_date?.getDate()} ${monthNames[project.end_date?.getMonth()]} ${project.end_date?.getFullYear()}`}</Title>
       <Title order={3}>Phase: {project.phase}</Title>
       <textarea  value={project.description} readOnly className="border-none" />
       {isOwner && <Button className="max-w-[150px]" onClick={() => setEditing(true)}>Update</Button>}
@@ -63,6 +63,8 @@ function EditProject({project,setEditing,updateProject,setShowMessage}: {project
     console.log(res);
     setEditing(false);
     if(res.message){
+      res.message.start_date = new Date(res.message.start_date);
+      res.message.end_date = new Date(res.message.end_date);
       updateProject(res.message);
       return;
     }
