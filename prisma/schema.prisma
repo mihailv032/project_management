@@ -35,6 +35,7 @@ model UserSession {
 
 
 enum ProjectPhase {
+  PLANNING
   DESIGN
   DEVELOPMENT
   TESTING
